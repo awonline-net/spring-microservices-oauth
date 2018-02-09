@@ -17,7 +17,7 @@ public class PostServiceController {
 	PostService postService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Post getComments(@PathVariable("postId") String postId) {
+	public Post getPost(@PathVariable("postId") String postId) {
 		return postService.getPost(postId);
 	}
 }

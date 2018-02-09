@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,14 +20,14 @@ public class IndexController {
 
 	// TODO Use Zuul + Eureka
 	// FIXME check Feign project
-	private static final String POST_SERVICE_URL = "http://localhost:8001/v1/posts/{postId}";
-	private static final String COMMENT_SERVICE_URL = "http://localhost:8002/v1/posts/{postId}/comments";
+	private static final String POST_SERVICE_URL = "http://localhost:8001/post-service/v1/posts/{postId}";
+	private static final String COMMENT_SERVICE_URL = "http://localhost:8002/comment-service/v1/comments/{postId}/comments";
 
 	@Autowired
-	RestTemplate restTemplate;
+	OAuth2RestOperations restTemplate;
 
 	@RequestMapping("/")
-	public String greeting(@RequestParam(value = "postId", required = false, defaultValue = "1") String postId,
+	public String getPost(@RequestParam(value = "postId", required = false, defaultValue = "1") String postId,
 			Model model) {
 
 		String postJson = restTemplate.getForObject(POST_SERVICE_URL, String.class, postId);

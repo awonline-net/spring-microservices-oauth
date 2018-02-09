@@ -12,7 +12,7 @@ import net.awonline.microservices.oauth.commentservice.model.Comment;
 import net.awonline.microservices.oauth.commentservice.service.CommentService;
 
 @RestController
-@RequestMapping(value = "v1/posts/{postId}/comments")
+@RequestMapping(value = "v1/comments/{postId}/comments")
 public class CommentServiceController {
 
 	@Autowired

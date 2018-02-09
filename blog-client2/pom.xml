@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.awonline.microservices.oauth</groupId>
-	<artifactId>blog-client</artifactId>
+	<artifactId>blog-client2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Blog Client</name>
-	<description>Client for Microservices</description>
+	<name>Blog Client2</name>
+	<description>Client 2 for Microservices</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
