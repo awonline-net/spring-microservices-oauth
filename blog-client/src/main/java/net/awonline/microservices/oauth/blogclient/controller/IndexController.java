@@ -19,7 +19,7 @@ import net.awonline.microservices.oauth.blogclient.model.Post;
 public class IndexController {
 
 	// TODO Use Zuul + Eureka
-	// FIXME check Feign project
+	// TODO Use Feign
 	private static final String POST_SERVICE_URL = "http://localhost:8001/post-service/v1/posts/{postId}";
 	private static final String COMMENT_SERVICE_URL = "http://localhost:8002/comment-service/v1/comments/{postId}/comments";
 
