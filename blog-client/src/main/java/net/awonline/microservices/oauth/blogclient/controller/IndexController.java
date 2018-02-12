@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,6 +26,18 @@ public class IndexController {
 
 	@Autowired
 	OAuth2RestOperations restTemplate;
+
+	@RequestMapping("/publicWithoutAuthorization")
+	@ResponseBody
+	public String getPublicWithoutAuthorization() {
+		return "Public Without Authorization";
+	}
+
+	@RequestMapping("/publicWithoutAuthentication")
+	@ResponseBody
+	public String getPublicWithoutAuthentication() {
+		return "Public Without Authentication";
+	}
 
 	@RequestMapping("/")
 	public String getPost(@RequestParam(value = "postId", required = false, defaultValue = "1") String postId,
