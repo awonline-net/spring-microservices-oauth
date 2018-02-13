@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,9 +40,8 @@ public class IndexController {
 		return "Public Without Authentication";
 	}
 
-	@RequestMapping("/")
-	public String getPost(@RequestParam(value = "postId", required = false, defaultValue = "1") String postId,
-			Model model) {
+	@RequestMapping(value = "/post/{postId}", method = RequestMethod.GET)
+	public String getPost(@PathVariable("postId") String postId, Model model) {
 
 		String postJson = restTemplate.getForObject(POST_SERVICE_URL, String.class, postId);
 		String commentsJson = restTemplate.getForObject(COMMENT_SERVICE_URL, String.class, postId);

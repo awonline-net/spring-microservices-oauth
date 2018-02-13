@@ -16,7 +16,7 @@ public class SecuredController {
 	@Autowired
 	private OAuth2RestOperations restTemplate;
 
-	@RequestMapping(name = "/secured")
+	@RequestMapping(value = "/secured")
 	@ResponseBody
 	public String getSecuredResource() {
 		return restTemplate.getForObject(POST_SERVICE_SECURED_SERVICE_URL, String.class);
