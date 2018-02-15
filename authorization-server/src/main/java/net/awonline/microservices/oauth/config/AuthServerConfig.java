@@ -18,7 +18,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 	private static final String CLIENT_ID = "blog-web-client";
 	private static final String SECRET = "blog-web-client-secret";
 	private static final String REDIRECT_URIS[] = new String[] { "https://localhost:8443/client",
-			"http://localhost:8081/another-client" };
+			"https://localhost:8444/another-client" };
 
 	private static final String[] AUTHORITIES = new String[] { "ROLE_USER" };
 	private static final String[] SCOPES = new String[] { "web-client" };
