@@ -17,7 +17,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 
 	@Override
 	public void configure(ResourceServerSecurityConfigurer config) {
-		config.tokenServices(jwtTokenServices);
+		// @formatter:off
+		config
+			.tokenServices(jwtTokenServices)
+			.resourceId("comment-resource");
+		// @formatter:on
 	}
 
 	@Override
@@ -28,10 +32,4 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	        .authorizeRequests().anyRequest().authenticated();
      // @formatter:on
 	}
-
-	// TODO configure resourceId
-	// @Override
-	// public void configure(ResourceServerSecurityConfigurer resources) throws
-	// super.configure(resources);
-	// }
 }

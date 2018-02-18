@@ -24,6 +24,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 	private static final String[] SCOPES = new String[] { "web-client" };
 	private static final String[] AUTHORIZED_GRANT_TYPES = new String[] { "authorization_code", "refresh_token" };
 
+	private static final String POST_RESOURCE_ID = "post-resource";
+	private static final String COMMENT_RESOURCE_ID = "comment-resource";
+
 	@Autowired
 	TokenStore jwtTokenStore;
 
@@ -59,6 +62,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 		 	.inMemory()
 		 	.withClient(CLIENT_ID).secret(SECRET)
 			.scopes(SCOPES)
+			.resourceIds(POST_RESOURCE_ID, COMMENT_RESOURCE_ID)
 		 	.redirectUris(REDIRECT_URIS)
 			.authorities(AUTHORITIES)
 			.authorizedGrantTypes(AUTHORIZED_GRANT_TYPES)
