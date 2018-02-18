@@ -21,11 +21,13 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 			"https://localhost:8444/another-client" };
 
 	private static final String[] AUTHORITIES = new String[] { "ROLE_USER" };
-	private static final String[] SCOPES = new String[] { "web-client" };
 	private static final String[] AUTHORIZED_GRANT_TYPES = new String[] { "authorization_code", "refresh_token" };
 
 	private static final String POST_RESOURCE_ID = "post-resource";
 	private static final String COMMENT_RESOURCE_ID = "comment-resource";
+
+	private static final String SCOPE_READ = "read";
+	private static final String SCOPE_WRITE = "write";
 
 	@Autowired
 	TokenStore jwtTokenStore;
@@ -61,7 +63,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 		 clients
 		 	.inMemory()
 		 	.withClient(CLIENT_ID).secret(SECRET)
-			.scopes(SCOPES)
+			.scopes(SCOPE_READ, SCOPE_WRITE)
 			.resourceIds(POST_RESOURCE_ID, COMMENT_RESOURCE_ID)
 		 	.redirectUris(REDIRECT_URIS)
 			.authorities(AUTHORITIES)
