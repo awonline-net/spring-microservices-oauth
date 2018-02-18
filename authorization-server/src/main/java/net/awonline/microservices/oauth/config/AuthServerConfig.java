@@ -15,10 +15,13 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @EnableAuthorizationServer
 public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
-	private static final String CLIENT_ID = "blog-web-client";
-	private static final String SECRET = "blog-web-client-secret";
-	private static final String REDIRECT_URIS[] = new String[] { "https://localhost:8443/client",
-			"https://localhost:8444/another-client" };
+	private static final String BLOG_CLIENT_ID = "blog-web-client";
+	private static final String BLOG_SECRET = "blog-web-client-secret";
+	private static final String BLOG_CLIENT_REDIRECT_URI = "https://localhost:8443/client";
+
+	private static final String READONLY_BLOG_CLIENT_ID = "readonly-blog-web-client";
+	private static final String READONLY_BLOG_SECRET = "readonly-blog-web-client-secret";
+	private static final String READONLY_BLOG_CLIENT_REDIRECT_URI = "https://localhost:8444/another-client";
 
 	private static final String[] AUTHORITIES = new String[] { "ROLE_USER" };
 	private static final String[] AUTHORIZED_GRANT_TYPES = new String[] { "authorization_code", "refresh_token" };
@@ -62,15 +65,25 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 		// @formatter:off
 		 clients
 		 	.inMemory()
-		 	.withClient(CLIENT_ID).secret(SECRET)
-			.scopes(SCOPE_READ, SCOPE_WRITE)
-			.resourceIds(POST_RESOURCE_ID, COMMENT_RESOURCE_ID)
-		 	.redirectUris(REDIRECT_URIS)
-			.authorities(AUTHORITIES)
-			.authorizedGrantTypes(AUTHORIZED_GRANT_TYPES)
-			.accessTokenValiditySeconds(300)
-			.refreshTokenValiditySeconds(36000)
-			.autoApprove(true);
+			 	.withClient(BLOG_CLIENT_ID).secret(BLOG_SECRET)
+				.scopes(SCOPE_READ, SCOPE_WRITE)
+				.resourceIds(POST_RESOURCE_ID, COMMENT_RESOURCE_ID)
+			 	.redirectUris(BLOG_CLIENT_REDIRECT_URI)
+				.authorities(AUTHORITIES)
+				.authorizedGrantTypes(AUTHORIZED_GRANT_TYPES)
+				.accessTokenValiditySeconds(300)
+				.refreshTokenValiditySeconds(36000)
+				.autoApprove(true)
+			.and()
+			 	.withClient(READONLY_BLOG_CLIENT_ID).secret(READONLY_BLOG_SECRET)
+				.scopes(SCOPE_READ)
+				.resourceIds(POST_RESOURCE_ID, COMMENT_RESOURCE_ID)
+			 	.redirectUris(READONLY_BLOG_CLIENT_REDIRECT_URI)
+				.authorities(AUTHORITIES)
+				.authorizedGrantTypes(AUTHORIZED_GRANT_TYPES)
+				.accessTokenValiditySeconds(300)
+				.refreshTokenValiditySeconds(36000)
+				.autoApprove(true);
 		// @formatter:on
 	}
 }
