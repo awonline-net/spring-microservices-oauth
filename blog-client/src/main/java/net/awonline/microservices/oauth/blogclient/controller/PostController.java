@@ -18,7 +18,7 @@ import net.awonline.microservices.oauth.blogclient.model.Comment;
 import net.awonline.microservices.oauth.blogclient.model.Post;
 
 @Controller
-public class IndexController {
+public class PostController {
 
 	// TODO Use Zuul + Eureka
 	// TODO Use Feign
@@ -53,7 +53,7 @@ public class IndexController {
 		model.addAttribute("post", post);
 		model.addAttribute("comments", comments);
 
-		return "index";
+		return "post";
 	}
 
 	private Post getPostFromJson(String json) {
