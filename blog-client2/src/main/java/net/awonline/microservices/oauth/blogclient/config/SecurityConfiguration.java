@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableOAuth2Sso
@@ -31,10 +32,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
-		http.csrf().disable()
+		http
+			.csrf()
+			.ignoringAntMatchers("/logout/**")
+		.and()
 			.antMatcher("/**").authorizeRequests()
 			.antMatchers("/", "/login**").permitAll()
-			.anyRequest().authenticated();
+			.anyRequest().authenticated()
+		.and()
+			.logout()
+			.deleteCookies("ANOTHERWEBCLIENTSESS")
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.logoutSuccessUrl("/");
 		// @formatter:on
 	}
 }
