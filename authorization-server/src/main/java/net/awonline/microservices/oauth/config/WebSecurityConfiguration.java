@@ -31,8 +31,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .permitAll()
 	    .and()
 	    	.cors()
-	    	.configurationSource(logoutCorsConfigurationSource());
-        
+	    	.configurationSource(logoutCorsConfigurationSource())
+	    .and()
+			.logout()
+			.deleteCookies("AUTHSESS");
      // @formatter:on
 	}
 
@@ -43,7 +45,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		config.setAllowCredentials(true);
 		config.addAllowedHeader("X-Requested-With");
 		config.addAllowedHeader("Content-Type");
-		config.addAllowedMethod(HttpMethod.POST);
+		config.addAllowedMethod(HttpMethod.GET);
 		source.registerCorsConfiguration("/logout", config);
 		return source;
 	}
