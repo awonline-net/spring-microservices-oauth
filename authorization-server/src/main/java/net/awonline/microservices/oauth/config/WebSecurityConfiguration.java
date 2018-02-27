@@ -31,10 +31,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .permitAll()
 	    .and()
 	    	.cors()
-	    	.configurationSource(logoutCorsConfigurationSource())
-	    .and()
-			.logout()
-			.deleteCookies("AUTHSESS");
+	    	.configurationSource(logoutCorsConfigurationSource());
         
      // @formatter:on
 	}
