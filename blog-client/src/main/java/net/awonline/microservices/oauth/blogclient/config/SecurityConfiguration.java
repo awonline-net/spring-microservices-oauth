@@ -29,21 +29,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new OAuth2RestTemplate(oAuthResourceDetails, oAuth2ClientContext);
 	}
 
+	@Bean
+	public GlobalSSOLogoutHandler globalSSOLogoutHandler() {
+		return new GlobalSSOLogoutHandler();
+	}
+
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		http
-			.csrf()
-			.ignoringAntMatchers("/logout/**")
-	    .and()
 			.antMatcher("/**").authorizeRequests()
 			.antMatchers("/", "/login**", "/publicWithoutAuthentication").permitAll()
 			.anyRequest().authenticated()
 		.and()
 			.logout()
-			.deleteCookies("WEBCLIENTSESS")
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/");
+			.logoutSuccessUrl("/")
+			.addLogoutHandler(globalSSOLogoutHandler());
 		// @formatter:on
 	}
 }
