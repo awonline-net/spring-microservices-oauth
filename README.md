@@ -7,6 +7,7 @@ To run the example:
 - install the provided SSL certificates in your Java cacerts
 - start Redis
 - start all other services in any order
+- use "user" / "pass" credentials to log in
 
 Optionally:
 - generate your own SSL certificates (OAuth Server and Clients)
@@ -23,3 +24,15 @@ There is also a [tag](https://github.com/awonline-net/spring-microservices-oauth
 JWT's are used for Client communication with Resource server over Spring's OAuthRestTemplate. As mentioned, Client's authentication sessions are stored in Redis.
 
 Such solutions allows easy adaption of other OAuth2 grant flows that are more suitable for eg. single page or mobile apps (put a Gateway API in front of Resource Servers)
+
+## Endpoints
+
+Each Client:
+- "/" - public, navigates to "/restricted" endpoint
+- "/restricted" - only for authenticated users, shows log out possibilites ("global" log out)
+- "/secured" - only for authenticated users,  calls "/v1/posts/secured" endpoint from Resource Server #1 over OAuthRestTemplate 
+
+Client #1:
+- "/post/{id} - only for authenticated users, calls over OAuthRest template:
+  a) "/v1/posts/{postId}" endpoint from Resource Server #1
+  b) "/v1/comments/{postId}/comments" endpoint from Resource Server #2
