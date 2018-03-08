@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SecuredController {
 
 	// TODO Use Zuul + Eureka
-	// FIXME check Feign project
+	// TODO Use Feign
 	private static final String POST_SERVICE_SECURED_SERVICE_URL = "http://localhost:8001/post-service/v1/posts/secured";
 
 	@Autowired
 	private OAuth2RestOperations restTemplate;
 
-	@RequestMapping(value = "/secured")
+	@RequestMapping(name = "/secured")
 	@ResponseBody
 	public String getSecuredResource() {
 		return restTemplate.getForObject(POST_SERVICE_SECURED_SERVICE_URL, String.class);
