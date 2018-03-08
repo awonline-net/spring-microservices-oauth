@@ -33,6 +33,8 @@ Each Client:
 - "/secured" - only for authenticated users,  calls "/v1/posts/secured" endpoint from Resource Server #1 over OAuthRestTemplate 
 
 Client #1:
-- "/post/{id} - only for authenticated users, calls over OAuthRest template:
-  a) "/v1/posts/{postId}" endpoint from Resource Server #1
-  b) "/v1/comments/{postId}/comments" endpoint from Resource Server #2
+- "/post/{id} - only for authenticated users, calls over OAuthRestTemplate:
+  - "/v1/posts/{postId}" endpoint from Resource Server #1
+  - "/v1/comments/{postId}/comments" endpoint from Resource Server #2
+
+Existing ID's are 1, 2 and 3
