@@ -15,7 +15,7 @@ Optionally:
 
 ## Single Sign On and Sign Out
 
-Redis is used as authentication session store. The use of Redis allows log out from all Clients (Single Sign Out).
+Redis is used as authentication session store. The use of Redis allows logging out from all Clients at the same time when the Resource Owner logs out from one Client (Single Sign Out).
 There is also a [tag](https://github.com/awonline-net/spring-microservices-oauth/releases/tag/sso_logout_single_client_app) provided which shows how to mix Single Sign On with Sign Out from specific Client (this example doesn't require Redis)
 
 ## Why HTTP sessions and JWT's?
