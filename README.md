@@ -1,8 +1,5 @@
-Complete Spring Boot Microservices example
+Spring Boot Microservices OAuth example
+
+![Alt text](overview.png?raw=true "OAuth")
 
 
-Services
-
-- client: localhost:8080
-- post service: localhost:8001
-- comment service: localhost:8002
